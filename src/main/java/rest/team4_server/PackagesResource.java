@@ -38,15 +38,13 @@ public class PackagesResource {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("getpackage/{pkgId}")
-    public String getPackage(@PathParam("pkgId") int pkgId) {
+    @Path("getpackage/{PackageId}")
+    public String getPackage(@PathParam("PackageId") int pkgId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Package pkg = entityManager.find(Package.class, pkgId);
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Package>>() {
-        }.getType();
-        return gson.toJson(pkg, type);
+        return gson.toJson(pkg);
     }
 
     @POST
@@ -83,8 +81,8 @@ public class PackagesResource {
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("deletepackage/{pkgId}")
-    public String deletePackage(@PathParam("pkgId") int pkgId) {
+    @Path("deletepackage/{PackageId}")
+    public String deletePackage(@PathParam("PackageId") int pkgId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Package pkg = entityManager.find(Package.class, pkgId);
