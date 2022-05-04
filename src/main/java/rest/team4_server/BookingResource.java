@@ -40,7 +40,7 @@ public class BookingResource {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("select b from Booking b");
-        List<Agent> list = query.getResultList();
+        List<Booking> list = query.getResultList();
 
         Gson gson = new Gson();
         Type type = new TypeToken<List<Booking>>() {
