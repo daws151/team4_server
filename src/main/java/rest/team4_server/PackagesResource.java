@@ -1,6 +1,6 @@
 package rest.team4_server;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import model.Package;
 
@@ -11,9 +11,13 @@ import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.lang.reflect.Type;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 
 @Path("/package")
 public class PackagesResource {
@@ -24,6 +28,11 @@ public class PackagesResource {
             e.printStackTrace();
         }
     }
+
+//    public void gsonhandler() {
+//        GsonBuilder gsonBuilder = new ;
+//
+//    }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("getpackages")
@@ -32,7 +41,7 @@ public class PackagesResource {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("select p from Package p");
         List<Package> list = query.getResultList();
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         Type type = new TypeToken<List<Package>>(){}.getType();
         return gson.toJson(list,type);
     }
@@ -43,7 +52,7 @@ public class PackagesResource {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Package pkg = entityManager.find(Package.class, pkgId);
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         return gson.toJson(pkg);
     }
 
@@ -54,7 +63,7 @@ public class PackagesResource {
     public String postPackage(String jsonString) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         Package packageObject = gson.fromJson(jsonString, Package.class);
         entityManager.getTransaction().begin();
         Package mergedObject = entityManager.merge(packageObject);
@@ -70,7 +79,7 @@ public class PackagesResource {
     public String putPackage(String jsonString) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         Package packageObject = gson.fromJson(jsonString, Package.class);
         entityManager.getTransaction().begin();
         entityManager.persist(packageObject);

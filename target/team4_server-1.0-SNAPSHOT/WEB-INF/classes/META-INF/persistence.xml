@@ -7,11 +7,9 @@
     <class>model.Package</class>
         <class>model.Agent</class>
         <class>model.Booking</class>
-<<<<<<< HEAD
-=======
-        <class>model.Triptype</class>
+      <class>model.Triptype</class>
         <class>model.Customer</class>
->>>>>>> d0f74d67586069bf4c821e5066d5386393f3bc78
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/travelexperts"/>

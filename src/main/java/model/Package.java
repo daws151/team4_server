@@ -1,7 +1,7 @@
 package model;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -27,10 +27,10 @@ public class Package {
     private String pkgDesc;
 
     @Column(name = "PkgBasePrice", nullable = false, precision = 19, scale = 4)
-    private BigDecimal pkgBasePrice;
+    private Double pkgBasePrice;
 
     @Column(name = "PkgAgencyCommission", precision = 19, scale = 4)
-    private BigDecimal pkgAgencyCommission;
+    private Double pkgAgencyCommission;
 
     public Integer getId() {
         return PackageId;
@@ -72,19 +72,19 @@ public class Package {
         this.pkgDesc = pkgDesc;
     }
 
-    public BigDecimal getPkgBasePrice() {
+    public Double getPkgBasePrice() {
         return pkgBasePrice;
     }
 
-    public void setPkgBasePrice(BigDecimal pkgBasePrice) {
+    public void setPkgBasePrice(Double pkgBasePrice) {
         this.pkgBasePrice = pkgBasePrice;
     }
 
-    public BigDecimal getPkgAgencyCommission() {
+    public Double getPkgAgencyCommission() {
         return pkgAgencyCommission;
     }
 
-    public void setPkgAgencyCommission(BigDecimal pkgAgencyCommission) {
+    public void setPkgAgencyCommission(Double pkgAgencyCommission) {
         this.pkgAgencyCommission = pkgAgencyCommission;
     }
 
