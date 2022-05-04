@@ -10,7 +10,7 @@ import java.time.Instant;
 @Table(name = "packages")
 public class Package {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PackageId", nullable = false)
     private Integer PackageId;
 
