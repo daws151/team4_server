@@ -10,15 +10,25 @@ import javax.persistence.Table;
 public class Triptype {
     @Id
     @Column(name = "TripTypeId", nullable = false, length = 1)
-    private String id;
+    private String tripTypeId;
+
+    @Column(name = "TTName", length = 25)
+    private String tTName;
 
     public String getId() {
-        return id;
+        return tripTypeId;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.tripTypeId = id;
     }
 
-//TODO [JPA Buddy] generate columns from DB
+    public String getTTName() {
+        return tTName;
+    }
+
+    public void setTTName(String tTName) {
+        this.tTName = tTName;
+    }
+
 }
