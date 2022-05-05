@@ -8,14 +8,14 @@ public class Customer {
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CustomerId", nullable = false)
-    private Integer id;
+    private Integer customerId;
 
     public Integer getId() {
-        return id;
+        return customerId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.customerId = id;
     }
 
 //TODO [JPA Buddy] generate columns from DB
