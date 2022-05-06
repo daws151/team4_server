@@ -53,8 +53,8 @@ public class CustomerResource {
     //get selected customer
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("getcustomer/{ customerId }")
-    public String getCustomer(@PathParam("customerId") int customerId)
+    @Path("getcustomer/{CustomerId}")
+    public String getCustomer(@PathParam("CustomerId") int customerId)
     {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -115,8 +115,8 @@ public class CustomerResource {
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("deletecustomer/{ customerId }")
-    public String deleteCustomer(@PathParam("customerId") int customerId) {
+    @Path("deletecustomer/{CustomerId}")
+    public String deleteCustomer(@PathParam("CustomerId") int customerId) {
 
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -134,7 +134,7 @@ public class CustomerResource {
             entityManager.getTransaction().begin();
             entityManager.remove(cus);
             entityManager.getTransaction().commit();
-            message="{'message':Succesfully Deleted}";
+            message="{'message':Successfully Deleted}";
 
         }
 

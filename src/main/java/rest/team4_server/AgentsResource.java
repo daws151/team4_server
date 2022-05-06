@@ -43,8 +43,8 @@ EntityManager em;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("getagent/{agtId}")
-    public String getAgent(@PathParam("agtId") int agtId) {
+    @Path("getagent/{AgentId}")
+    public String getAgent(@PathParam("AgentId") int agtId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Agent agt = entityManager.find(Agent.class, agtId);
@@ -88,8 +88,8 @@ EntityManager em;
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("deleteagent/{agtId}")
-    public String deleteAgent(@PathParam("agtId") int agtId) {
+    @Path("deleteagent/{AgentId}")
+    public String deleteAgent(@PathParam("AgentId") int agtId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Agent agt = entityManager.find(Agent.class, agtId);
