@@ -17,13 +17,12 @@ import java.util.List;
 @Path("/customer")
 public class CustomerResource {
 
-    public CustomerResource() {
+    public void CustomerResource() {
         try {
-            DriverManager.registerDriver(new org.mariadb.jdbc.Driver());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+           e.printStackTrace();
         }
-
     }
 
     //get all customer
@@ -35,19 +34,14 @@ public class CustomerResource {
     {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         Query query = entityManager.createQuery("select c from Customer c");
         List<Customer> list = query.getResultList();
-
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Customer>>() {
-        }.getType();
-
-        entityManager.close();
+        Type type = new TypeToken<List<Customer>>(){}.getType();
+//        entityManager.close();
         return gson.toJson(list, type);
 
     }
-
 
 
     //get selected customer
@@ -58,11 +52,9 @@ public class CustomerResource {
     {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         Customer cus = entityManager.find(Customer.class, customerId);
         Gson gson = new Gson();
-
-        entityManager.close();
+//        entityManager.close();
         return gson.toJson(cus);
 
     }
@@ -76,18 +68,14 @@ public class CustomerResource {
     public String postCustomer(String jsonString) { //data coming as string n then convert to Json
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         Gson gson = new Gson();
         Customer customerObject = gson.fromJson(jsonString, Customer.class);
         entityManager.getTransaction().begin();
         Customer mergeObject = entityManager.merge(customerObject);
-
         entityManager.getTransaction().commit();
         entityManager.close();
         return "{ 'message':'Update successful'}";
-
     }
-
 
     //insert
 
@@ -121,21 +109,17 @@ public class CustomerResource {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        Customer cus = entityManager.find(Customer.class, customerId);//find
-        String message="";
-
+        Customer cus = entityManager.find(Customer.class, customerId); //find
+        String message;
         if (cus == null) {
-
             entityManager.close();
-            message= "{ 'message':'Delete Failed'}";
+            message= "{ 'message':'Customer not found'}";
         }
         else {
             entityManager.getTransaction().begin();
             entityManager.remove(cus);
             entityManager.getTransaction().commit();
             message="{'message':Successfully Deleted}";
-
         }
 
         return message;
