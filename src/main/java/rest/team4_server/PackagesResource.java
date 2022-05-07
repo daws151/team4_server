@@ -69,7 +69,7 @@ public class PackagesResource {
         Package mergedObject = entityManager.merge(packageObject);
         entityManager.getTransaction().commit();
         entityManager.close();
-        return "{'message': 'Package was updated'}";
+        return "{\"message\": \"Package was updated\"}";
     }
 
     @PUT
@@ -85,7 +85,7 @@ public class PackagesResource {
         entityManager.persist(packageObject);
         entityManager.getTransaction().commit();
         entityManager.close();
-        return "{'message': 'Package was inserted'}";
+        return "{\"message\": \"Package was inserted\"}";
     }
 
     @DELETE
@@ -102,7 +102,7 @@ public class PackagesResource {
             entityManager.getTransaction().begin();
             entityManager.remove(pkg);
             entityManager.getTransaction().commit();
-            message = "{'message': 'Package was deleted'}";
+            message = "{\"message\": \"Package was deleted\"}";
         }
         return message;
     }
